@@ -40,6 +40,7 @@ export default {
       });
       auth.useDeviceLanguage();
       auth.signInWithRedirect(provider);
+      this.$router.push("/home");
     },
     async adminLogin() {
       console.log("here");
@@ -72,9 +73,9 @@ export default {
     }
   },
   mounted() {
-    auth.getRedirectResult().then(result => {
-      console.log(result);
-    });
+    // auth.getRedirectResult().then(result => {
+    //   console.log(result.additionalUserInfo.profile.hd);
+    // });
     auth.onAuthStateChanged(user => {
       console.log(user);
     });
