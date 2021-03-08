@@ -1,13 +1,30 @@
+
+
 <template>
-  <div id="app">
-    <div id="nav">
-      <img on.click="https://www.bu.edu/spark/" alt="Spark logo" src="./assets/spark-project-engage.web.png" height="150" width="150" postion="right" >
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <img on.click="https://www.bu.edu/spark/" alt="Spark logo" src="./assets/spark-project-engage.web.png" height="200" width="200" align="top">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+
+  
+    
 </template>
+
+
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+
+  
+}
+</script>
 
 <style>
 #app {
@@ -16,15 +33,14 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
+  ;
+
+  
 }
-#nav {
-  padding: 30px;
-}
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-#nav a.router-link-exact-active {
-  color: #42b983;
+
+#img {
+  height: 100px;
+ 
 }
 </style>
