@@ -1,4 +1,5 @@
 <template>
+
     <section class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-4">
@@ -7,40 +8,48 @@
                         Login successfully. <small>waiting for redirect.</small>
                         <loader-component width="30"></loader-component>
                     </div>
-                    <h1 class="display-3 font-weight-bold" >Welcome to SPARK!</h1>
-                    <br>
-                    <form action="">
+                     
+
+    
+ 
+                     
+                     <v-img :src="require('../assets/backgroundd.png')" > 
+                     
+                      <v-img :src="require('./assets/spark-logo.png')" height="300px" width="300px" ></v-img> <h1><center>Welcome to SPARK!</center></h1>
+                     
+                     
+                     
+                     </v-img>
+                    
+                 
+                     
+                    
+         
+                     <form action="">
                         <div class="form-group">
-                            <lable class="input-label"><h3>For Students      </h3></lable>
+                            <lable class="input-label"><h3><center>For Students      </center></h3></lable>
                         </div>
 
-                        <div class="text-center">
-                        <v-btn
-                          rounded
-                          color="primary"
-                          dark
-                          >
-                        Kerberos Login
-                        </v-btn>
-                        </div>
+                       
+                      <div class="text-center">
+              <v-btn class="ma-2" outlined rounded color="black">
+                Kerberos Login
+              </v-btn>
+            </div>
+ 
 
-                        
+            
+
                         <template>
             
                         </template>
                         <div class="form-group">
-                            <lable class="input-label"> <h3>For Admins      </h3> </lable>
+                            <lable class="input-label"> <h3><center>For Admins      </center></h3> </lable>
                          </div>
 
                          <div class="text-center">
-    <v-btn
-      rounded
-      color="primary"
-      dark
-    >
-      Gmail Login
-    </v-btn>
-  </div>
+                         <v-btn class="" rounded outlined color="black"> Gmail Login </v-btn>
+                         </div>
  
  
                         <br>
@@ -49,6 +58,7 @@
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
@@ -57,12 +67,15 @@
 
 
 <script>
+
+ 
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -79,8 +92,8 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #415a4f;
 }
-</style>
 
+</style>
 
