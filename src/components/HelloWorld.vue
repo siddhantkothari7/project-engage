@@ -6,36 +6,37 @@
     <v-row 
     no-gutters
     style="height: 300px;">
-      <v-col order="last">  
+      <v-col order="last" no-gutters >  
         <v-card
           class="pa-14"
           outlined
           tile
-          no-borders          
-        >
+          no-gutters 
+         >
+            
+              <center><lable class="input-label"><h3 >For Students  </h3></lable></center>
+               
+               <center> <h4> 
+               <router-link to="/KerberosLogin" tag="KerberosLogin" exact> <v-btn v-on:click="display" class="mx-2" rounded dark color="#23b676" to="/KerberosLogin">
+             Kerberos Login 
+              
+              </v-btn><p v-if="show" > Kerberos Login: ..... </p></router-link></h4>  
 
-              <center><lable class="input-label"><h3>For Students  </h3></lable></center>
+            </center> 
 
-                        
-
-                       
-                     <center><h4>
-              <v-btn class="mx-2" rounded dark color="#23b676">
-               Kerberos Login
-              </v-btn></h4>
-            </center>
  
 
             
 
                          <br/>
-                        <center><lable class="input-label"><h3>For Admins  </h3></lable></center>
+                        <center><lable class="input-label"><h3>For Admins </h3></lable></center>
 
 
-                               <center><h4>
-              <v-btn class="mx-2" rounded dark color="#23b676">
-               Gmail Login
-              </v-btn></h4>
+                               <center><h4> 
+               
+                <router-link to="/GmailLogin" tag="GmailLogin" exact>
+                <v-btn  v-on:click2="display2" class="mx-2" rounded dark color="#3CBD9A" > Gmail Login </v-btn>
+                <p v-if="show2" >  Gmail Login: ..... </p></router-link>  </h4>
             </center>
                      
         </v-card>
@@ -61,15 +62,29 @@
 </template>
  
 
- 
+  
 <script>
-  export default {
-    data: () => ({
-      alignments: [
-        'center',
-      ],
-    }),
+export default {
+  name: "HelloWorld",
+  data() { 
+
+    return {
+      show: false
+    }
+  },
+  
+  methods: {
+    display(){  
+      this.show =!this.show
+    },
+
+    display2(){
+      this.show2 =! this.show2
+    },
   }
+};
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -79,6 +94,14 @@ test {
 
   margin-top: 15px auto;
   padding-top: 100px  0 0;
+
+}
+
+.v-card {
+  display: block;
+  border-color: white !important;
+  margin-top: 15vh;
+ 
 
 }
 
@@ -92,7 +115,7 @@ li {
   margin: 0 10px;
 }
 v-btn {
-  color: #23b676;
+  color: #36bd90;
 }
 
 h2 {
