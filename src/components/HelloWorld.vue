@@ -35,7 +35,7 @@
                                <center><h4> 
                
                 <router-link to="/GmailLogin" tag="GmailLogin" exact>
-                <v-btn  v-on:click2="display2" class="mx-2" rounded dark color="#3CBD9A" > Gmail Login </v-btn>
+                <v-btn  v-on:click="display2" class="mx-2" rounded dark color="#3CBD9A" > Gmail Login </v-btn>
                 <p v-if="show2" >  Gmail Login: ..... </p></router-link>  </h4>
             </center>
                      
@@ -68,24 +68,61 @@ export default {
   name: "HelloWorld",
   data() { 
 
-    return {
+  return {
       show: false
     }
   },
-  
+
   methods: {
     display(){  
       this.show =!this.show
-    },
+    }
+  },
+ 
 
-    display2(){
-      this.show2 =! this.show2
-    },
-  }
+
 };
 
 
+
+
+
+
 </script>
+
+<script>
+export default {
+  name: "HelloWorld",
+  data() { 
+
+  return {
+      show: false,
+      show2: true,
+    }
+  },
+
+  methods: {
+    display(){   
+      this.show =!this.show
+      
+    },
+
+    display2() {  
+      this.show2 =!this.show2
+      
+    }
+  },
+
+ 
+ 
+
+
+};
+
+
+
+</script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
