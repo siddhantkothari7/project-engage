@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import KerberosLogin from "../components/KerberosLogin.vue";
+import Login from "../components/Login.vue";
+import GmailLogin from "../components/GmailLogin.vue";
 
 Vue.use(VueRouter);
 
@@ -8,16 +10,28 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Login
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/KerberosLogin",
+    name: "KerberosLogin",
+    component: KerberosLogin,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    
+
+  },
+
+  {
+    path: "/GmailLogin",
+    name: "GmailLogin",
+    component: GmailLogin,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    
+
   }
 ];
 
