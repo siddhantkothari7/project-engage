@@ -1,24 +1,25 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
-import VueRouter from "vue-router";
 import store from "./store";
-import vuetify from "./plugins/vuetify";
 import router from "./router";
- 
- 
-Vue.config.productionTip = false;
+import { auth } from "@/firebase/init";
+import vuetify from "./plugins/vuetify";
+import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
- 
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
-},
+Vue.config.productionTip = false;
 
-
-
-).$mount("#app");
+var app = null;
+auth.onAuthStateChanged(async () => {
+  if (!app) {
+    await store.dispatch("getUser");
+    new Vue({
+      store,
+      router,
+      vuetify,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+});
