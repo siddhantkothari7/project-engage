@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-btn class="ma-2" @click="googleLogin"> {{ buttonLabel }} </v-btn>
+    <v-btn class="mx-2" rounded dark color="#23b676" @click="googleLogin">
+      {{ buttonLabel }}
+    </v-btn>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ import { auth } from "@/firebase/init";
 import store from "@/store";
 export default {
   name: "GoogleLoginButton",
-  props: ["buttonLabel"],
+  props: ["buttonLabel", "buttonColor"],
   data() {
     return {
       errorMsg: null

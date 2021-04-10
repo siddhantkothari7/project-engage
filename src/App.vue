@@ -5,18 +5,21 @@
     src="./assets/spark-project-engage.web.png"
     align="top"
   /> -->
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+  <Login />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import "vue-material/dist/vue-material.min.css";
-import "vue-material/dist/theme/default.css";
+// import HelloWorld from "./components/HelloWorld.vue";
+import Login from "@/views/Login";
+// import "vue-material/dist/vue-material.min.css";
+// import "vue-material/dist/theme/default.css";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    // HelloWorld,
+    Login
   }
 };
 </script>

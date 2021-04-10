@@ -29,17 +29,9 @@ const routes = [
     }
   },
   {
-    path: "/home",
+    path: "/Home",
     name: "home",
     component: () => import("@/views/Home.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/pending",
-    name: "waitApproval",
-    component: () => import("@/views/WaitApproval.vue"),
     meta: {
       requiresAuth: false
     }
