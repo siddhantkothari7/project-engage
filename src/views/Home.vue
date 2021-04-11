@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { db } from "@/firebase/init";
+import { functions, db } from "@/firebase/init";
 import store from "@/store";
 // const admin = require("firebase-admin");
 // admin.initializeApp({ projectId: "spark-project-engage" });
@@ -56,6 +56,8 @@ export default {
               invitorEmail: this.user.email
             })
             .then(() => {});
+
+          await functions.httpsCallable("processChangeRole")();
 
           // admin.auth().getUserByEmail(this.addAdminEmail).then((user) => {
           //   console.log("here")
