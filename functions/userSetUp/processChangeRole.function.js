@@ -7,7 +7,8 @@ module.exports.processChangeRole = functions.https.onCall(
       return { message: "Authentication Required!", code: 401 };
     }
     console.log(context.auth.uid);
-    return admin.auth().setCustomUserClaims(context.auth.uid, { admin: true });
+    admin.auth().setCustomUserClaims(context.auth.uid, { admin: true });
+    return null;
     // return { message: "success"};
   }
 );
