@@ -1,12 +1,18 @@
 <template>
   <div>
     <div>
-      <v-alert dark v-if="errorMsg">
+      <v-alert color="#36bd90" dark v-if="errorMsg">
         {{ errorMsg }}
       </v-alert>
-      <v-text-field outlined v-model="emailEntered"> </v-text-field>
+      <v-text-field height="10px" outlined v-model="emailEntered">
+      </v-text-field>
       <div>
-        <v-btn v-if="!this.adminValidation" class="ma-2" @click="checkEmail()">
+        <v-btn
+          color="#36bd90"
+          v-if="!this.adminValidation"
+          class="ma-2"
+          @click="checkEmail()"
+        >
           Check Email
         </v-btn>
       </div>
@@ -63,6 +69,7 @@ button {
   margin-top: 10px;
 }
 v-text-field {
-  width: 200;
+  width: 100;
+  margin-top: 30px;
 }
 </style>

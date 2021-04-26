@@ -51,7 +51,7 @@
               required
             ></v-textarea>
             <v-btn :disabled="!valid" @click="send">Send</v-btn>
-            <v-overlay v-if="dialog" absolute color="#036358">
+            <v-overlay v-if="dialog" absolute color="#36bd90">
               <v-text v-if="success">Email Sent Successfully!</v-text>
               <v-text v-else-if="fail">Unable To Send Email</v-text>
               <div v-else class="text-center">
