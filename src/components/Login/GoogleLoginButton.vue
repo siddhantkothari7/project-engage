@@ -2,7 +2,7 @@
   <div>
     <v-btn color="#fffff" class="ma-2" @click="googleLogin">
       <v-avatar>
-        <v-img src="../../assets/google.jpeg" height="20px" width="20px" />
+        <v-img src="../../assets/google.png" height="20px" width="20px" />
       </v-avatar>
       {{ buttonLabel }}
     </v-btn>
