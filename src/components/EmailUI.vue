@@ -4,107 +4,38 @@
       <v-card>
         <v-card-text>
           <v-form ref="form" v-model="valid">
-            <template v-slot:item="data">
-              <v-list-tile-content>
-                <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
-                <v-list-tile-sub-title
-                  v-html="data.item.email"
-                ></v-list-tile-sub-title>
-              </v-list-tile-content>
-            </template>
             <v-combobox
               v-model="to"
               :rules="emailRules"
-              :items="recepients"
               :return-object="false"
               label="To"
               chips
+              deletable-chips
               item-value="email"
               multiple
               required
             >
-              <template v-slot:selection="data">
-                <v-chip
-                  :key="JSON.stringify(data.item)"
-                  :input-value="data.selected"
-                  :disabled="data.disabled"
-                  class="v-chip--select-multi"
-                  @input="data.parent.selectItem(data.item)"
-                  >{{ data.item }}</v-chip
-                >
-              </template>
-              <template v-slot:item="data">
-                <v-list-tile-content>
-                  <v-list-tile-title
-                    v-html="data.item.name"
-                  ></v-list-tile-title>
-                  <v-list-tile-sub-title
-                    v-html="data.item.affiliation"
-                  ></v-list-tile-sub-title>
-                </v-list-tile-content>
-              </template>
             </v-combobox>
             <v-combobox
               v-model="cc"
               :rules="ccRules"
-              :items="ccRecepients"
               :return-object="false"
               label="Cc"
               chips
+              deletable-chips
               item-value="email"
               multiple
             >
-              <template v-slot:selection="data">
-                <v-chip
-                  :key="JSON.stringify(data.item)"
-                  :input-value="data.selected"
-                  :disabled="data.disabled"
-                  class="v-chip--select-multi"
-                  @input="data.parent.selectItem(data.item)"
-                  >{{ data.item }}</v-chip
-                >
-              </template>
-              <template v-slot:item="data">
-                <v-list-tile-content>
-                  <v-list-tile-title
-                    v-html="data.item.name"
-                  ></v-list-tile-title>
-                  <v-list-tile-sub-title
-                    v-html="data.item.affiliation"
-                  ></v-list-tile-sub-title>
-                </v-list-tile-content>
-              </template>
             </v-combobox>
             <v-combobox
               v-model="bcc"
               :rules="ccRules"
-              :items="bccRecepients"
               :return-object="false"
               label="Bcc"
               chips
               item-value="email"
               multiple
             >
-              <template v-slot:selection="data">
-                <v-chip
-                  :key="JSON.stringify(data.item)"
-                  :input-value="data.selected"
-                  :disabled="data.disabled"
-                  class="v-chip--select-multi"
-                  @input="data.parent.selectItem(data.item)"
-                  >{{ data.item }}</v-chip
-                >
-              </template>
-              <template v-slot:item="data">
-                <v-list-tile-content>
-                  <v-list-tile-title
-                    v-html="data.item.name"
-                  ></v-list-tile-title>
-                  <v-list-tile-sub-title
-                    v-html="data.item.affiliation"
-                  ></v-list-tile-sub-title>
-                </v-list-tile-content>
-              </template>
             </v-combobox>
             <v-text-field
               v-model="subject"
@@ -119,35 +50,17 @@
               auto-grow
               required
             ></v-textarea>
-            <v-btn :disabled="dialog || success || fail" @click="send"
-              >Send</v-btn
-            >
-            <!-- <v-dialog v-model="dialog" hide-overlay persistent width="300">
-              <v-card color="primary" dark>
-                <v-card-text>
-                  Sending Email
-                  <v-progress-linear
-                    indeterminate
-                    color="white"
-                    class="mb-0"
-                  ></v-progress-linear>
-                </v-card-text>
-              </v-card>
-            </v-dialog> -->
-            <!-- <v-dialog v-model="success" hide-overlay persistent width="300">
-              <v-card color="green" dark>
-                <v-card-text>Email Sent Successfully</v-card-text>
-              </v-card>
-            </v-dialog>
-            <v-dialog v-model="fail" hide-overlay persistent width="300">
-              <v-card color="red" dark>
-                <v-card-text>Unable To Send Email</v-card-text>
-              </v-card>
-            </v-dialog> -->
+            <v-btn :disabled="!valid" @click="send">Send</v-btn>
             <v-overlay v-if="dialog" absolute color="#036358">
               <v-text v-if="success">Email Sent Successfully!</v-text>
               <v-text v-else-if="fail">Unable To Send Email</v-text>
-              <v-text v-else>Sending Email ...</v-text>
+              <div v-else class="text-center">
+                Sending Email ...
+                <v-progress-circular
+                  indeterminate
+                  color="primary"
+                ></v-progress-circular>
+              </div>
             </v-overlay>
           </v-form>
         </v-card-text>
@@ -193,10 +106,7 @@ export default {
       cc: null,
       bcc: null,
       subject: null,
-      message: null,
-      ccRecepients: [],
-      bccRecepients: [],
-      recepients: []
+      message: null
     };
   },
   computed: {
@@ -207,10 +117,9 @@ export default {
   methods: {
     async send() {
       if (this.$refs.form.validate()) {
-        // this.toEmail = this.to.join();
-        const toList = [];
-        const ccList = [];
-        const bccList = [];
+        let toList = [];
+        let ccList = [];
+        let bccList = [];
         this.formatList(this.to, toList);
         this.formatList(this.cc, ccList);
         this.formatList(this.bcc, bccList);
@@ -229,13 +138,16 @@ export default {
           .httpsCallable("sendEmail")(message)
           .then(result => {
             console.log(result);
+            this.clear();
             this.success = true;
           })
           .catch(error => {
             console.log(error);
             this.fail = true;
           });
-        this.dialog = false;
+        setTimeout(() => {
+          this.dialog = false;
+        }, 1000);
       }
     },
     formatList(recipient, recipientList) {
@@ -244,6 +156,13 @@ export default {
           recipientList.push("<" + this.to[i] + ">");
         }
       }
+    },
+    clear() {
+      this.to = null;
+      this.cc = null;
+      this.bcc = null;
+      this.message = null;
+      this.subject = null;
     }
   }
 };
