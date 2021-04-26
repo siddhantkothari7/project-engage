@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div>
+    <div class="container-fluid">
       <v-alert color="#36bd90" dark v-if="errorMsg">
         {{ errorMsg }}
       </v-alert>
-      <v-text-field height="10px" outlined v-model="emailEntered">
-      </v-text-field>
+      <h2>
+        <center>
+          <v-col cols="110" sm="6" md="6">
+            <v-text-field label="Email" outlined> </v-text-field>
+          </v-col>
+        </center>
+      </h2>
       <div>
         <v-btn
           color="#36bd90"
@@ -69,7 +74,10 @@ button {
   margin-top: 10px;
 }
 v-text-field {
-  width: 100;
-  margin-top: 30px;
+  width: 200;
+}
+
+h2 {
+  margin-top: 150px;
 }
 </style>
